@@ -42,10 +42,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildItem(Article article) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: ListTile(
-          title: new Text(article.text, style: new TextStyle(fontSize: 24.0),),
-          subtitle: new Text("${article.commentsCount} comments"),
-        onTap: () async {
+      child: ExpansionTile(
+        title: new Text(article.text, style: new TextStyle(fontSize: 18.0),),
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+
+              new Text("${article.commentsCount} comments"),
+              new IconButton(icon: new Icon(Icons.launch), onPressed: ()async {
             final url = "http://${article.domain}";
             // Check if device can lauch the link:
             launch(url);
@@ -53,8 +58,32 @@ class _MyHomePageState extends State<MyHomePage> {
               // If true, launch the link
               launch(url);
             }
-        },
+        }
+        )
+            ],
+          ),
+        ],
       ),
     );
   }
+
+//  Widget _buildItem(Article article) {
+//    return Padding(
+//      padding: const EdgeInsets.all(16.0),
+//      child: ListTile(
+//          title: new Text(article.text, style: new TextStyle(fontSize: 24.0),),
+//          subtitle: new Text("${article.commentsCount} comments"),
+//        onTap: () async {
+//            final url = "http://${article.domain}";
+//            // Check if device can lauch the link:
+//            launch(url);
+//            if(await canLaunch(url)) {
+//              // If true, launch the link
+//              launch(url);
+//            }
+//        },
+//      ),
+//    );
+//  }
+
 }
