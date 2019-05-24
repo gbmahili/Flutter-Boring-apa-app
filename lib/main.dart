@@ -34,15 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              'Hello',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+          children: articles.map((article) => new Text(article.text)).toList(),
         ),
       ),
     );
