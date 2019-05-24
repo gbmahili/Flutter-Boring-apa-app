@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'src/article.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -43,8 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
       child: ListTile(
           title: new Text(article.text, style: new TextStyle(fontSize: 24.0),),
           subtitle: new Text("${article.commentsCount} comments"),
-        onTap: (){
-            // TODO
+        onTap: () async {
+            final url = "http://${article.domain}";
+            // Check if device can lauch the link:
+            launch(url);
+            if(await canLaunch(url)) {
+              // If true, launch the link
+              launch(url);
+            }
         },
       ),
     );
