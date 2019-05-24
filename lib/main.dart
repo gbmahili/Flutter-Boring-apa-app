@@ -31,11 +31,21 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: articles.map((article) => new Text(article.text)).toList(),
-        ),
+      body: ListView(
+        children: _articles.map(_buildItem).toList(),
+      ),
+    );
+  }
+
+  Widget _buildItem(Article article) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: ListTile(
+          title: new Text(article.text, style: new TextStyle(fontSize: 24.0),),
+          subtitle: new Text("${article.commentsCount} comments"),
+        onTap: (){
+            // TODO
+        },
       ),
     );
   }
